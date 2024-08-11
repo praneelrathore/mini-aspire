@@ -1,0 +1,8 @@
+mysql:
+  database: "mini-aspire"
+  host: "127.0.0.1"
+  port: "3306"
+  username: "dbuser"
+  password: "dbpass"
+  maxOpenConnections: 10
+  maxIdleConnections: 2
