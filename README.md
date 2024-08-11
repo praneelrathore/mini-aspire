@@ -51,6 +51,8 @@ Required tables will be created automatically when the application is started.
 6. Once docker is up and running, we can execute the command ```go run main.go``` to start the application. The application
 is automatically configured to connect to the database.
 
+### Demo
+A video recording of the application is also present in demo.md file
 
 ### Notes about the project
 - The project is structured in a way that it can be easily extended to include more features. I have exposed interfaces
@@ -69,3 +71,4 @@ I have not added them.
   - Users can repay their loans in installments. The amount is calculated based on the term and the amount requested. Only users who are authenticated can repay loans.
   - Validations checks are present for user's repayment where there are checks that user is only repaying their own loan, that the loan amount is valid and that the loan is not already repaid.
   - I have also added a check where users will be asked for extra 10% amount in case their due date is passed. This is to ensure that users are incentivized to repay their loans on time.
+  - Readme for each specific section of the project is added in the section's directory itself, for more context.
