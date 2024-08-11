@@ -89,13 +89,28 @@ func (s *Service) GetLoans(ctx context.Context, userID uint64) ([]*mappers.LoanR
 
 	loanRequests := make([]*mappers.LoanRequest, 0, len(loans))
 	for _, loan := range loans {
+		loanRepayments := make([]*mappers.LoanRepayment, 0, len(loan.LoanRepaymentData))
+		for _, loanRepayment := range loan.LoanRepaymentData {
+			loanRepaymentRequest := &mappers.LoanRepayment{
+				ID:                loanRepayment.ID,
+				LoanApplicationID: loanRepayment.LoanApplicationID,
+				InstallmentAmount: loanRepayment.InstallmentAmount,
+				PaidAmount:        loanRepayment.PaidAmount,
+				DueDate:           loanRepayment.DueDate.Format(DateFormat),
+				PaidDate:          loanRepayment.PaidDate.Format(DateFormat),
+				Status:            uint8(loanRepayment.Status),
+			}
+			loanRepayments = append(loanRepayments, loanRepaymentRequest)
+		}
+
 		loanRequest := &mappers.LoanRequest{
-			LoanID: loan.ID,
-			UserID: loan.UserID,
-			Amount: loan.Amount,
-			Date:   loan.Date.Format(DateFormat),
-			Term:   loan.Terms,
-			Status: uint8(loan.Status),
+			LoanID:        loan.ID,
+			UserID:        loan.UserID,
+			Amount:        loan.Amount,
+			Date:          loan.Date.Format(DateFormat),
+			Term:          loan.Terms,
+			Status:        uint8(loan.Status),
+			LoanRepayment: loanRepayments,
 		}
 		loanRequests = append(loanRequests, loanRequest)
 	}
