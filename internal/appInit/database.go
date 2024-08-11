@@ -27,6 +27,7 @@ func InitializeDatabase(ctx context.Context) *Connection {
 	dbName := viper.GetString("mysql.database")
 
 	dsn := userName + ":" + password + "@tcp(" + host + ":" + port + ")/" + dbName + dbParams
+	log.Printf("Connecting to database: %s", dsn)
 	gormDB, err := gorm.Open(mysql.Open(dsn), &gorm.Config{
 		Logger: gormLogger,
 	})

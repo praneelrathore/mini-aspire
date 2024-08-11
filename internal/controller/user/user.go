@@ -19,7 +19,7 @@ func RegisterUser(c *gin.Context) {
 		log.Printf("Error in binding user signup request: %v", err)
 		c.AbortWithStatusJSON(
 			http.StatusBadRequest,
-			mappers.StatusFailed("Bad request - JSON binding error in incoming request"),
+			mappers.StatusFailed(err.Error()),
 		)
 		return
 	}
@@ -31,12 +31,12 @@ func RegisterUser(c *gin.Context) {
 		log.Printf("Error in signing up user: %v", err)
 		c.AbortWithStatusJSON(
 			http.StatusInternalServerError,
-			mappers.StatusFailed("Unable to process the request."),
+			mappers.StatusFailed(err.Error()),
 		)
 		return
 	}
 
-	c.JSON(http.StatusOK, mappers.StatusSuccess("User signed up successfully"))
+	c.JSON(http.StatusOK, mappers.StatusSuccess(err.Error()))
 }
 
 func SubmitLoanRequest(ctx *gin.Context) {
@@ -45,7 +45,7 @@ func SubmitLoanRequest(ctx *gin.Context) {
 		log.Printf("Error in binding loan request: %v", err)
 		ctx.AbortWithStatusJSON(
 			http.StatusBadRequest,
-			mappers.StatusFailed("Bad request - JSON binding error in incoming request"),
+			mappers.StatusFailed(err.Error()),
 		)
 		return
 	}
@@ -57,7 +57,7 @@ func SubmitLoanRequest(ctx *gin.Context) {
 		log.Printf("Error in submitting loan request: %v", err)
 		ctx.AbortWithStatusJSON(
 			http.StatusInternalServerError,
-			mappers.StatusFailed("Unable to process the request."),
+			mappers.StatusFailed(err.Error()),
 		)
 		return
 	}
@@ -84,7 +84,7 @@ func GetLoanStatus(ctx *gin.Context) {
 		log.Printf("Error in getting loan status: %v", err)
 		ctx.AbortWithStatusJSON(
 			http.StatusInternalServerError,
-			mappers.StatusFailed("Unable to process the request."),
+			mappers.StatusFailed(err.Error()),
 		)
 		return
 	}
@@ -98,7 +98,7 @@ func RepayLoanInstallment(ctx *gin.Context) {
 		log.Printf("Error in binding loan request: %v", err)
 		ctx.AbortWithStatusJSON(
 			http.StatusBadRequest,
-			mappers.StatusFailed("Bad request - JSON binding error in incoming request"),
+			mappers.StatusFailed(err.Error()),
 		)
 		return
 	}
@@ -110,7 +110,7 @@ func RepayLoanInstallment(ctx *gin.Context) {
 		log.Printf("Error in submitting loan request: %v", err)
 		ctx.AbortWithStatusJSON(
 			http.StatusInternalServerError,
-			mappers.StatusFailed("Unable to process the request."),
+			mappers.StatusFailed(err.Error()),
 		)
 		return
 	}

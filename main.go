@@ -7,22 +7,13 @@ import (
 	"time"
 
 	"github.com/gin-gonic/gin"
-	"github.com/personal/mini-aspire/internal/appInit"
 	"github.com/personal/mini-aspire/internal/controller/admin"
 	"github.com/personal/mini-aspire/internal/controller/user"
 )
 
 func main() {
 	ctx := context.TODO()
-	gin.SetMode(gin.ReleaseMode)
-	appInit.InitializeConfig()
-	db := appInit.InitializeDatabase(ctx)
-	env := appInit.NewEnv(
-		appInit.WithDatabaseConnection(db),
-	)
-	nCtx := env.WithContext(ctx)
-	// setup router and start server
-	r := Initialize(nCtx)
+	r := Initialize(ctx)
 	srv := &http.Server{
 		Addr:         ":8081",
 		Handler:      r,

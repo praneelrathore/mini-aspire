@@ -39,3 +39,14 @@ If you use zsh as your default shell, add the following line at the end of `~/.z
    All the Go packages downloaded are kept in either of these 2 folders, depending on the type of package.
 
 5. Install [Docker](https://docs.docker.com/install/)
+
+We are only running mysql in docker to support our application. After installing, you can simply run the following command to start the mysql container:
+
+```sh
+docker-compose -f docker-compose.yml up -d --build
+```
+
+Required tables will be created automatically when the application is started.
+
+6. Once docker is up and running, we can execute the command ```go run main.go``` to start the application. The application
+is automatically configured to connect to the database.

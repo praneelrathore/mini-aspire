@@ -17,7 +17,7 @@ func RegisterAdmin(c *gin.Context) {
 		log.Printf("Error in binding user signup request: %v", err)
 		c.AbortWithStatusJSON(
 			http.StatusBadRequest,
-			mappers.StatusFailed("Bad request - JSON binding error in incoming request"),
+			mappers.StatusFailed(err.Error()),
 		)
 		return
 	}
@@ -29,7 +29,7 @@ func RegisterAdmin(c *gin.Context) {
 		log.Printf("Error in signing up admin: %v", err)
 		c.AbortWithStatusJSON(
 			http.StatusInternalServerError,
-			mappers.StatusFailed("Unable to process the request."),
+			mappers.StatusFailed(err.Error()),
 		)
 		return
 	}
@@ -56,7 +56,7 @@ func GetLoanRequests(c *gin.Context) {
 		log.Printf("Error in getting loan requests: %v", err)
 		c.AbortWithStatusJSON(
 			http.StatusInternalServerError,
-			mappers.StatusFailed("Unable to process the request."),
+			mappers.StatusFailed(err.Error()),
 		)
 		return
 	}
@@ -70,7 +70,7 @@ func ApproveLoanRequest(ctx *gin.Context) {
 		log.Printf("Error in binding loan request: %v", err)
 		ctx.AbortWithStatusJSON(
 			http.StatusBadRequest,
-			mappers.StatusFailed("Bad request - JSON binding error in incoming request"),
+			mappers.StatusFailed(err.Error()),
 		)
 		return
 	}
@@ -82,7 +82,7 @@ func ApproveLoanRequest(ctx *gin.Context) {
 		log.Printf("Error in updating loan request: %v", err)
 		ctx.AbortWithStatusJSON(
 			http.StatusInternalServerError,
-			mappers.StatusFailed("Unable to process the request."),
+			mappers.StatusFailed(err.Error()),
 		)
 		return
 	}

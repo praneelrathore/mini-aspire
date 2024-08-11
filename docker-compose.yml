@@ -1,19 +1,5 @@
 version: "3.8"
 services:
-#  mini-aspire-service:
-#    build:
-#      context: .
-#      dockerfile: ./Dockerfile
-#    networks:
-#      - net
-#    expose:
-#      - "8081"
-#    ports:
-#      - "8081:8081"
-#    depends_on:
-#      - mysql
-#    container_name: mini-aspire-service
-
   mysql:
     image: mysql:8.0
     user: 501:20

@@ -20,3 +20,10 @@ COPY . .
 
 # build the source
 RUN CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -o mini-aspire-linux-amd64
+
+#COPY --from=builder /go/src/mini-aspire-linux-amd64 ./mini-aspire-linux-amd64
+# add required files from host
+#COPY ./configs/ ./configs/
+
+# Run
+ENTRYPOINT ["./mini-aspire-linux-amd64"]
